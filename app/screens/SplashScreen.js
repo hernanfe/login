@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StatusBar,Text,Image} from 'react-native'
+import {View, StatusBar,Image,StyleSheet} from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { imageBackgroundStyle} from '@styles/General'
 
@@ -32,10 +32,21 @@ export default class SplashScreen extends Component{
             //          source={require('@recursos/images/mini.png')}
             //     />
             //  </View>
-            <React.Fragment>
+            //<React.Fragment style="justifyContent: 'center'">
+            <View style={styles.splash}>
                 <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
                 <Image source={require('@recursos/images/logo-icon.png')}></Image>
-            </React.Fragment>            
+            {/* </React.Fragment> */}
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    splash: {
+      flex: 1,
+      backgroundColor: "#924E7D",
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+}); 
