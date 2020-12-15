@@ -16,7 +16,8 @@ import {
   StatusBar,
   TextInput,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import {
@@ -33,30 +34,53 @@ const AppButton = ({ onPress, title }) => (
   </TouchableOpacity>
 );
 
+
+const ActionBarImage = () => {
+  return (
+    <View style={{flexDirection: 'row'}}>
+      <Image
+        source={{
+          uri:
+            'app/images/login-ima.png',
+        }}
+        style={{
+          width: 40,
+          height: 40,
+          borderRadius: 40 / 2,
+          marginLeft: 15,
+        }}
+      />
+    </View>
+  );
+};
+
 const App: () => React$Node = () => {
   return (
     <>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionDescription}>
-                <Text style={styles.highlight}>Correo</Text>
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-               <TextInput style={styles.input} ></TextInput>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionDescription}>
-                <Text style={styles.highlight}>Contraseña</Text>
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-               <TextInput style={styles.input} ></TextInput>
-            </View>
-            <View style={styles.bottomView}>
-               <AppButton style={styles.button} title="Ingresar"></AppButton>
-            </View>
-          </View>
+      <View style={styles.body}>
+        <View style={styles.top}>
+          <Image style={styles.stretch} source={require('./app/images/login-ima.png')}></Image>
+        </View>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionDescription}>
+            <Text style={styles.highlight}>Correo</Text>
+          </Text>
+        </View>
+        <View style={styles.sectionContainer}>
+            <TextInput placeholder="Correo electrónico" style={styles.input} ></TextInput>
+        </View>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionDescription}>
+            <Text style={styles.highlight}>Contraseña</Text>
+          </Text>
+        </View>
+        <View style={styles.sectionContainer}>
+            <TextInput placeholder="Contraseña" style={styles.input} ></TextInput>
+        </View>
+        <View style={styles.bottomView}>
+            <AppButton style={styles.button} title="Ingresar"></AppButton>
+        </View>
+      </View>
     </>
   );
 };
@@ -92,6 +116,7 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+    fontSize:12
   },
   footer: {
     color: Colors.dark,
@@ -105,8 +130,8 @@ const styles = StyleSheet.create({
     margin: 0,
     height: 35,
     borderBottomColor: '#7a42f4',
-    fontFamily: 'Arial',
-    fontSize: 12,
+    //fontFamily: 'Arial',
+    fontSize: 14,
     borderBottomWidth: 1,
     padding: 5
   },
@@ -142,7 +167,21 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
     //textTransform: "uppercase"
-  }  
+  },
+  top:{
+    width: '100%', 
+    height: 150, 
+    backgroundColor: '#FFF', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    position: 'absolute',
+    top: 5
+  },  
+  stretch: {
+    width: 150,
+    height: 150,
+    resizeMode: 'stretch',
+  },
 });
 
 export default App;
