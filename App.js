@@ -59,7 +59,7 @@ const App: () => React$Node = () => {
     <>
       <View style={styles.body}>
         <View style={styles.top}>
-          <Image style={styles.stretch} source={require('./app/images/login-ima.png')}></Image>
+          <Image style={styles.stretch} source={require('@recursos/images/login-ima.png')}></Image>
         </View>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionDescription}>
