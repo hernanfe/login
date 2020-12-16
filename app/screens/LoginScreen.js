@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import {
     StyleSheet,
     View,
@@ -11,6 +11,19 @@ import {
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
+import {GoogleSigninButton, GoogleSignin} from 'react-native-google-signin';
+
+if (Platform.OS === 'android') {
+  GoogleSignin.configure({
+    forceCodeForRefreshToken: true,
+  })
+} else {
+  GoogleSignin.configure({
+    webClientId: '634118146916-pbijebscui9f7rqvhisoknabaakg8is3.apps.googleusercontent.com',
+    forceCodeForRefreshToken: true,
+    iosClientId: '634118146916-pbijebscui9f7rqvhisoknabaakg8is3.apps.googleusercontent.com'
+  })
+}  
 
 const AppButton = ({ onPress, title }) => (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
@@ -18,12 +31,56 @@ const AppButton = ({ onPress, title }) => (
     </TouchableOpacity>
  );
 
+// const [state,setState] = useState (null);
+
  
  export default class LoginScreen extends Component{
+   
+    constructor(props){
+      super(props)
+      this.state  = {
+        usergoogleinfo: null
+      }
+    }
 
     callFun= () =>{
       Alert.alert("clicked");
     }
+  
+    signIn = async() => {
+      try {
+        //await GoogleSignin.hasplayservices()
+        // const userinfo = await GoogleSignin.signIn();
+        // Alert.alert(userinfo);
+        await GoogleSignin.signIn()
+        .then((user) => {
+          console.log(user);
+         this.setState({
+          usergoogleinfo : user
+             //loaded : true
+         });
+        Alert.alert(JSON.stringify(user));
+        //this.setState({user: user});
+        })
+        .catch((err) => {
+          Alert.alert('WRONG SIGNIN', JSON.stringify(err));
+        });
+      } catch (error) {
+        Alert.alert(JSON.stringify(error.message));
+      }
+    }
+  
+    signOut = async () => {
+      try {
+        await GoogleSignin.revokeAccess();
+        await GoogleSignin.signOut();
+        this.setState(null); // Remember to remove the user from your app's state as well
+        Alert.alert("La sesión se cerró");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
     render(){
         return(
             <View style={styles.body}>
@@ -61,7 +118,7 @@ const AppButton = ({ onPress, title }) => (
                 <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
                   <Image  style={styles.social} source={require('@recursos/images/twitter.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.signIn}>
                   <Image  style={styles.social} source={require('@recursos/images/google.png')}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
@@ -72,7 +129,7 @@ const AppButton = ({ onPress, title }) => (
                 </TouchableOpacity>
             </View>
             <View style={styles.bottomView}>
-                <AppButton style={styles.button} title="Ingresar"></AppButton>
+                <AppButton style={styles.button} title="Ingresar" onPress={this.signOut}></AppButton>
             </View>
           </View>
         )
