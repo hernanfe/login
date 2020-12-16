@@ -11,8 +11,6 @@ import {
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
-//import Imgface from '@recursos/images/facebook.svg';
-import {Facebook} from "@recursos/js/facebook.js";
 
 const AppButton = ({ onPress, title }) => (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
