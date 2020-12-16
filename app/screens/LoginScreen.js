@@ -5,11 +5,14 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    Image
+    Image,
+    Alert
   } from 'react-native';
 import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
+//import Imgface from '@recursos/images/facebook.svg';
+import {Facebook} from "@recursos/js/facebook.js";
 
 const AppButton = ({ onPress, title }) => (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
@@ -17,8 +20,12 @@ const AppButton = ({ onPress, title }) => (
     </TouchableOpacity>
  );
 
+ 
+ export default class LoginScreen extends Component{
 
-export default class LoginScreen extends Component{
+    callFun= () =>{
+      Alert.alert("clicked");
+    }
     render(){
         return(
             <View style={styles.body}>
@@ -40,6 +47,31 @@ export default class LoginScreen extends Component{
             </View>
             <View style={styles.sectionContainer}>
                 <TextInput placeholder="Contraseña" style={styles.input} ></TextInput>
+            </View>
+            <View style={styles.sectionContainer}>
+                <Text style={styles.textLogin}>Aún no tiene cuenta? <Text style={styles.textLoginColor}>Regístrese</Text></Text>
+            </View>
+            <View style={styles.sectionContainer}>
+                <Text style={styles.textLogin}>Inicie sesión con</Text>
+            </View>
+            <View style={styles.arraysocial}>
+                {/* <Imgface/> */}
+                {/* <Facebook/> */}
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                  <Image  style={styles.social} source={require('@recursos/images/facebook.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                  <Image  style={styles.social} source={require('@recursos/images/twitter.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                  <Image  style={styles.social} source={require('@recursos/images/google.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                  <Image  style={styles.social} source={require('@recursos/images/microsoft.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                  <Image  style={styles.social} source={require('@recursos/images/linkedin.png')}></Image>
+                </TouchableOpacity>
             </View>
             <View style={styles.bottomView}>
                 <AppButton style={styles.button} title="Ingresar"></AppButton>
@@ -120,7 +152,7 @@ const styles = StyleSheet.create({
     appButtonContainer: {
       width: '100%', 
       elevation: 8,
-      backgroundColor: "#924E7D",
+      backgroundColor: "#7D367D", //"#924E7D",
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12
@@ -146,4 +178,28 @@ const styles = StyleSheet.create({
       height: 150,
       resizeMode: 'stretch',
     },
-}); 
+    textLogin: {
+        width: '100%', 
+        textAlign: 'center',
+        fontSize:12
+    },
+    textLoginColor: {
+        width: '100%', 
+        textAlign: 'center',
+        color: "#924E7D",
+        fontSize:12
+    },
+    social: {
+      width: 22,
+      height: 22,
+      borderRadius: 100, //25/2,
+      backgroundColor: "#7D367D",
+      padding:18,
+      margin:0.5
+      //resizeMode: 'stretch',
+    },
+    arraysocial: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+    }
+  }); 
