@@ -81,27 +81,33 @@ const AppButton = ({ onPress, title }) => (
       }
     };
   
+    onFocus= () => {
+      this.style={borderBottomColor: '#7a42f4'}
+    };
+
     render(){
         return(
-            <View style={styles.body}>
+          <View style={styles.body}>
             <View style={styles.top}>
               <Image style={styles.stretch} source={require('@recursos/images/login-ima.png')}></Image>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionDescription}>
-                <Text style={styles.highlight}>Correo</Text>
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-                <TextInput placeholder="Correo electrónico" style={styles.input} ></TextInput>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionDescription}>
-                <Text style={styles.highlight}>Contraseña</Text>
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-                <TextInput placeholder="Contraseña" style={styles.input} ></TextInput>
+            <View style={styles.card}>
+              <View style={styles.sectionContainer}>
+                <Text style={styles.sectionDescription}>
+                  <Text style={styles.highlight}>Correo</Text>
+                </Text>
+              </View>
+              <View style={styles.sectionContainer}>
+                  <TextInput placeholder="Correo electrónico" style={styles.input} onFocus={()=>this.onFocus()} ></TextInput>
+              </View>
+              <View style={styles.sectionContainer}>
+                <Text style={styles.sectionDescription}>
+                  <Text style={styles.highlight}>Contraseña</Text>
+                </Text>
+              </View>
+              <View style={styles.sectionContainer}>
+                  <TextInput placeholder="Contraseña" style={styles.input} ></TextInput>
+              </View>
             </View>
             <View style={styles.sectionContainer}>
                 <Text style={styles.textLogin}>Aún no tiene cuenta? <Text style={styles.textLoginColor}>Regístrese</Text></Text>
@@ -112,26 +118,26 @@ const AppButton = ({ onPress, title }) => (
             <View style={styles.arraysocial}>
                 {/* <Imgface/> */}
                 {/* <Facebook/> */}
-                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun} style={styles.socialout}>
                   <Image  style={styles.social} source={require('@recursos/images/facebook.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun} style={styles.socialout}>
                   <Image  style={styles.social} source={require('@recursos/images/twitter.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={this.signIn}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.signIn} style={styles.socialout}>
                   <Image  style={styles.social} source={require('@recursos/images/google.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun} style={styles.socialout}>
                   <Image  style={styles.social} source={require('@recursos/images/microsoft.png')}></Image>
                 </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun}>
+                <TouchableOpacity activeOpacity={0.5} onPress={this.callFun} style={styles.socialout}>
                   <Image  style={styles.social} source={require('@recursos/images/linkedin.png')}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.bottomView}>
                 <AppButton style={styles.button} title="Ingresar" onPress={this.signOut}></AppButton>
             </View>
-          </View>
+        </View>
         )
     }
 }
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
     },
     body: {
       flex: 1,
-      backgroundColor: Colors.white,
+      backgroundColor: '#fcfbfb', //Colors.white,
       justifyContent: 'center'
     },
     sectionContainer: {
@@ -180,7 +186,7 @@ const styles = StyleSheet.create({
     input: {
       margin: 0,
       height: 35,
-      borderBottomColor: '#7a42f4',
+      borderBottomColor: '#7a42f4', // '#fcfbfb',
       //fontFamily: 'Arial',
       fontSize: 14,
       borderBottomWidth: 1,
@@ -221,12 +227,13 @@ const styles = StyleSheet.create({
     },
     top:{
       width: '100%', 
-      height: 150, 
+      height: 100, 
       backgroundColor: '#FFF', 
       justifyContent: 'center', 
       alignItems: 'center',
       position: 'absolute',
-      top: 5
+      top: 90
+      //marginTop: 5
     },  
     stretch: {
       width: 150,
@@ -245,16 +252,34 @@ const styles = StyleSheet.create({
         fontSize:12
     },
     social: {
-      width: 22,
-      height: 22,
+      width: 6,
+      height: 6,
       borderRadius: 100, //25/2,
       backgroundColor: "#7D367D",
-      padding:18,
+      //padding:18,
       margin:0.5
       //resizeMode: 'stretch',
     },
     arraysocial: {
       flexDirection: 'row',
       justifyContent: 'center',
-    }
+    },
+    card: {
+      backgroundColor: Colors.white,
+      borderRadius:10,
+      borderColor:'rgba(0,0,0,125)',
+      padding:20
+    },
+    socialout: {
+      width: 12,
+      height: 12,
+      borderRadius: 100, //25/2,
+      backgroundColor: "#7D367D",
+      margin:0.5,
+      justifyContent: 'center',
+      alignItems:'center'
+    },
+    inputfocus: {
+      borderBottomColor: '#7a42f4',
+    },
   }); 
