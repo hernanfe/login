@@ -12,6 +12,7 @@ import {
     Colors,
 } from 'react-native/Libraries/NewAppScreen';
 import {GoogleSigninButton, GoogleSignin} from 'react-native-google-signin';
+import LinearGradient from 'react-native-linear-gradient';
 
 if (Platform.OS === 'android') {
   GoogleSignin.configure({
@@ -27,7 +28,9 @@ if (Platform.OS === 'android') {
 
 const AppButton = ({ onPress, title }) => (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-      <Text style={styles.appButtonText}>{title}</Text>
+      {/* <LinearGradient colors={['#80114D', '#9e3970']} style={styles.gradient}> */}
+        <Text style={styles.appButtonText}>{title}</Text>
+      {/* </LinearGradient> */}
     </TouchableOpacity>
  );
 
@@ -93,26 +96,22 @@ const AppButton = ({ onPress, title }) => (
             </View>
             <View style={styles.card}>
               <View style={styles.sectionContainer}>
-                <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>Correo</Text>
-                </Text>
+                  <Text style={styles.text1}>Correo</Text>
               </View>
               <View style={styles.sectionContainer}>
                   <TextInput placeholder="Correo electrónico" style={styles.input} onFocus={()=>this.onFocus()} ></TextInput>
               </View>
               <View style={styles.sectionContainer}>
-                <Text style={styles.sectionDescription}>
-                  <Text style={styles.highlight}>Contraseña</Text>
-                </Text>
+                  <Text style={styles.text2}>Contraseña</Text>
               </View>
               <View style={styles.sectionContainer}>
                   <TextInput placeholder="Contraseña" style={styles.input} ></TextInput>
               </View>
             </View>
-            <View style={styles.sectionContainer}>
+            <View style={styles.socialtext}>
                 <Text style={styles.textLogin}>Aún no tiene cuenta? <Text style={styles.textLoginColor}>Regístrese</Text></Text>
             </View>
-            <View style={styles.sectionContainer}>
+            <View style={styles.socialtext}>
                 <Text style={styles.textLogin}>Inicie sesión con</Text>
             </View>
             <View style={styles.arraysocial}>
@@ -136,6 +135,11 @@ const AppButton = ({ onPress, title }) => (
             </View>
             <View style={styles.bottomView}>
                 <AppButton style={styles.button} title="Ingresar" onPress={this.signOut}></AppButton>
+                {/* <LinearGradient colors={['#80114D', '#9e3970']} style={styles.gradient}> */}
+                  {/* <Text style={styles.button}> */}
+                    {/* Sign in with Facebook */}
+                  {/* </Text> */}
+                  {/* </LinearGradient>                 */}
             </View>
         </View>
         )
@@ -166,12 +170,16 @@ const styles = StyleSheet.create({
       color: Colors.black,
     },
     sectionDescription: {
-      marginTop: 8,
       fontSize: 18,
       fontWeight: '400',
       color: Colors.dark,
     },
-    highlight: {
+    text1: {
+      fontWeight: '700',
+      fontSize:12
+    },
+    text2: {
+      marginTop: 8,
       fontWeight: '700',
       fontSize:12
     },
@@ -190,7 +198,7 @@ const styles = StyleSheet.create({
       //fontFamily: 'Arial',
       fontSize: 14,
       borderBottomWidth: 1,
-      padding: 5
+      padding: 0
     },
     bottomView:{
       width: '100%', 
@@ -213,7 +221,7 @@ const styles = StyleSheet.create({
     appButtonContainer: {
       width: '100%', 
       elevation: 8,
-      backgroundColor: "#7D367D", //"#924E7D",
+      backgroundColor: "#80114D", //"#7D367D", //"#924E7D",
       borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12
@@ -252,8 +260,8 @@ const styles = StyleSheet.create({
         fontSize:12
     },
     social: {
-      width: 6,
-      height: 6,
+      width: 8,
+      height: 8,
       borderRadius: 100, //25/2,
       backgroundColor: "#7D367D",
       //padding:18,
@@ -263,21 +271,30 @@ const styles = StyleSheet.create({
     arraysocial: {
       flexDirection: 'row',
       justifyContent: 'center',
+      marginTop:10
     },
     card: {
       backgroundColor: Colors.white,
       borderRadius:10,
-      borderColor:'rgba(0,0,0,125)',
-      padding:20
+      //borderColor:'#fcfbfb', //'rgba(0,0,0,125)',
+      shadowColor: '#fcfbfb',
+      elevation:1,
+      padding:20,
+      margin:10
     },
     socialout: {
-      width: 12,
-      height: 12,
+      width: 22,
+      height: 22,
       borderRadius: 100, //25/2,
       backgroundColor: "#7D367D",
-      margin:0.5,
+      margin:8,
       justifyContent: 'center',
       alignItems:'center'
+    },
+    socialtext: {
+      marginTop: 10,
+      //paddingHorizontal: 24,
+      padding: 0
     },
     inputfocus: {
       borderBottomColor: '#7a42f4',
