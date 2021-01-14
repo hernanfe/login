@@ -27,11 +27,13 @@ if (Platform.OS === 'android') {
 }  
 
 const AppButton = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
-      {/* <LinearGradient colors={['#80114D', '#9e3970']} style={styles.gradient}> */}
-        <Text style={styles.appButtonText}>{title}</Text>
-      {/* </LinearGradient> */}
-    </TouchableOpacity>
+      <LinearGradient colors={['#c61b82','#71114d']} 
+         start={{x:1,y:1}} end={{x:0,y:0}}  style={styles.appButtonContainer} >
+        <TouchableOpacity onPress={onPress}>
+        {/* <LinearGradient colors={['#80114D', '#9e3970']} style={styles.gradient}> */}
+          <Text style={styles.appButtonText}>{title}</Text>
+        </TouchableOpacity>
+      </LinearGradient>
  );
 
 // const [state,setState] = useState (null);
