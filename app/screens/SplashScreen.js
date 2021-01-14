@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, StatusBar,Image,StyleSheet} from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { imageBackgroundStyle} from '@styles/General'
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class SplashScreen extends Component{
     goToScreen(routeName) {
@@ -33,11 +34,14 @@ export default class SplashScreen extends Component{
             //     />
             //  </View>
             //<React.Fragment style="justifyContent: 'center'">
-            <View style={styles.splash}>
-                <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} />
+            <LinearGradient colors={['#c61b82','#71114d','#c61b82']} 
+            start={{x:0,y:0}} end={{x:1,y:1}} style={styles.splash}  >
+            <View >
+                {/* <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent={true} /> */}
                 <Image source={require('@recursos/images/logo-icon.png')}></Image>
             {/* </React.Fragment> */}
             </View>
+            </LinearGradient>
         )
     }
 }
